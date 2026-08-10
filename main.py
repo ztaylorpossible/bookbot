@@ -1,5 +1,5 @@
 import sys
-from stats import count_words, count_characters, sorted_characters
+from stats import count_words, count_characters, chars_dict_to_sorted_list
 
 def get_book_text(filepath):
     with open(filepath) as f:
@@ -15,16 +15,16 @@ def main():
     text = get_book_text(path)
     words = count_words(text)
     characters = count_characters(text)
-    sorted = sorted_characters(characters)
+    sorted_items = chars_dict_to_sorted_list(characters)
     print("============ BOOKBOT ============")
     print(f"Analyzing book found at {path}...")
     print("----------- Word Count ----------")
     print(words)
     print("--------- Character Count -------")
-    for i in range(0, len(sorted)):
-        character = sorted[i]
-        if (character["char"].isalpha()):
-            print(f"{character["char"]}: {character["num"]}")
+    for i in range(0, len(sorted_items)):
+        character = sorted_items[i]
+        if (character[0].isalpha()):
+            print(f"{character[0]}: {character[1]}")
     print("============= END ===============")
 
 main()
